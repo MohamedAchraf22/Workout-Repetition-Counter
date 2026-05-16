@@ -1,38 +1,68 @@
-📌 Exercise Counter - Project Dependencies
+# 📌 Exercise Counter - Project Dependencies
 
-This project uses Computer Vision and Web APIs to detect and count exercises in real time.
+## 📝 Overview
+This project uses Computer Vision and Web APIs to detect and count exercises in real time using AI-based pose estimation and a backend API system.
 
-🧠 Core Libraries (Computer Vision & ML)
-OpenCV → video processing and camera input
-MediaPipe → pose estimation and landmark detection
-NumPy → numerical computations
-opencv-python==4.8.0.74
-mediapipe==0.10.20
-numpy>=1.26.0
-🌐 Backend (FastAPI Integration)
+---
 
-Used for building REST APIs and real-time communication.
+## 🧠 Core Libraries (Computer Vision & Machine Learning)
 
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
-🖥️ GUI Support (Optional)
+### 🔍 Description
+These libraries handle video processing, pose detection, and numerical computations.
 
-Used for image rendering and UI enhancements.
+- OpenCV → video processing and camera input  
+- MediaPipe → pose estimation and landmark detection  
+- NumPy → numerical computations  
 
-Pillow==10.0.0
-🧪 Development & Testing (Optional)
+### 📦 Dependencies
+opencv-python==4.8.0.74  
+mediapipe==0.10.20  
+numpy>=1.26.0  
 
-Used during development and API testing.
+---
 
-pytest==7.4.0
-requests==2.31.0
-⚙️ Installation
+## 🌐 Backend (FastAPI Integration)
 
-To install all dependencies:
+### 🔍 Description
+Used to build REST APIs and handle real-time communication between components.
 
-pip install -r requirements.txt
-🚀 Notes
-Make sure you're using Python 3.9+
-It's recommended to use a virtual environment (venv)
-MediaPipe may require compatible Python versions
+### 📦 Dependencies
+fastapi==0.104.1  
+uvicorn[standard]==0.24.0  
+python-multipart==0.0.6  
+
+---
+
+## 🖥️ GUI Support (Optional)
+
+### 🔍 Description
+Used for image rendering and user interface enhancements.
+
+### 📦 Dependencies
+Pillow==10.0.0  
+
+---
+
+## 🧪 Development & Testing
+
+### 🔍 Description
+Tools used for testing and development workflow.
+
+### 📦 Dependencies
+pytest==7.4.0  
+requests==2.31.0  
+
+---
+
+## ⚙️ Installation Guide
+
+### 💻 Command
+pip install -r requirements.txt  
+
+---
+
+## 🚀 Important Notes
+
+- Python 3.9+ is recommended  
+- Always use a virtual environment (venv)  
+- MediaPipe may require specific Python versions for compatibility  
