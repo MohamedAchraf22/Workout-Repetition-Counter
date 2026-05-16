@@ -1,0 +1,18 @@
+# Exercise Counter - Dependencies
+
+# Core ML/Computer Vision
+opencv-python==4.8.0.74
+mediapipe==0.10.20
+numpy>=1.26.0
+
+# Web Framework (FastAPI integration)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# GUI (optional, for existing UI)
+Pillow==10.0.0
+
+# Development (optional)
+pytest==7.4.0
+requests==2.31.0
