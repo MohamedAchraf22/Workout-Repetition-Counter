@@ -30,6 +30,8 @@ import sys
 
 # Import API router
 from api import router
+from db.database import Base, engine
+from db import models
 
 # ================================================================
 # FASTAPI APPLICATION SETUP
@@ -121,3 +123,6 @@ if __name__ == "__main__":
         # API mode (when run via uvicorn)
         # FastAPI handles everything, this block won't execute
         pass
+
+
+Base.metadata.create_all(bind=engine)

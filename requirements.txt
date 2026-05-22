@@ -16,3 +16,6 @@ Pillow==10.0.0
 # Development (optional)
 pytest==7.4.0
 requests==2.31.0
+
+psycopg2-binary==2.9.12
+SQLAlchemy==2.0.49
