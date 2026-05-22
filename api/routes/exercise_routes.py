@@ -18,13 +18,16 @@ ARCHITECTURE:
 Key principle: Thin routes, logic stays in services.
 """
 
-from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi import APIRouter, UploadFile, File, HTTPException , Form
 from typing import Optional
 import cv2
 import tempfile
 import os
 import mediapipe as mp
-
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from db.session import get_db
+from db.models import WorkoutResult
 from core import ExerciseConfig, BicepCurlDetector, JumpJackDetector, PushupDetector
 from services import RobustExerciseCounter
 from api.schemas.responses import ExerciseCountResponse, ErrorResponse
@@ -112,7 +115,7 @@ def process_video_for_counting(video_path: str, exercise_type: str) -> dict:
             name="Push-up",
             required_landmarks=required_landmarks,
             visibility_threshold=0.5,
-            stability_frames=20,
+            stability_frames=1,
             temporal_validation_frames=2,
             ready_position="UP",
             start_movement_position="UP",
@@ -172,7 +175,9 @@ def process_video_for_counting(video_path: str, exercise_type: str) -> dict:
 @router.post("/count", response_model=ExerciseCountResponse)
 async def count_exercise_reps(
     file: UploadFile = File(...),
-    exercise_type: str = "biceps"
+    username: str = Form(...),
+    exercise_type: str = "biceps",
+    db: Session = Depends(get_db)
 ) -> ExerciseCountResponse:
     """
     Count exercise repetitions from an uploaded video.
@@ -246,6 +251,15 @@ async def count_exercise_reps(
         
         # Process video using existing service
         result = process_video_for_counting(temp_file, exercise_type)
+        count_value = result["count"]
+        db_record = WorkoutResult(
+         username=username,   # هنطورها بعدين
+         video_path=file.filename,
+         count=count_value
+         )
+        db.add(db_record)
+        db.commit()
+        db.refresh(db_record)
         
         return ExerciseCountResponse(
             success=result["success"],
